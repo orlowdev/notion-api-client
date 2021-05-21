@@ -122,3 +122,7 @@ export interface NotionBlock {
 	[NotionBlockType.TO_DO]: NotionNode[]
 	[NotionBlockType.UNSUPPORTED]: {}
 }
+
+export type NotionBlockWithChildren = NotionBlock & {
+	children: Nullable<NotionBlock[]>
+}
