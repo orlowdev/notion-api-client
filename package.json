@@ -1,0 +1,89 @@
+{
+	"name": "notion-api-client",
+	"version": "0.0.0",
+	"description": "Node client for the official Notion API",
+	"main": "index.js",
+	"publishConfig": {
+		"registry": "https://registry-url",
+		"access": "public"
+	},
+	"keywords": [
+		"notion",
+		"api",
+		"client",
+		"node",
+		"typescript"
+	],
+	"author": "Sergei Orlov <hello@orlow.dev> (https://orlow.dev/)",
+	"license": "MIT",
+	"homepage": "https://github.com/orlowdev/notion-api-client",
+	"bugs": {
+		"email": "hello@orlow.dev",
+		"url": "https://github.com/orlowdev/notion-api-client/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+ssh://git@github.com/orlowdev/notion-api-client.git"
+	},
+	"scripts": {
+		"build": "tsc",
+		"test": "ava",
+		"test:cover": "nyc ava",
+		"format": "prettier --write *.{ts,json,md} **/*.{ts,json,md} **/**/*.{ts,json,md}",
+		"lint": "yarn lint:ts && yarn lint:tsc",
+		"lint:ts": "prettier -c *.{ts,json,md} **/*.{ts,json,md} **/**/*.{ts,json,md}",
+		"lint:tsc": "tsc --noEmit"
+	},
+	"husky": {
+		"hooks": {
+			"pre-push": "yarn lint"
+		}
+	},
+	"prettier": {
+		"printWidth": 80,
+		"trailingComma": "all",
+		"singleQuote": false,
+		"semi": false,
+		"useTabs": true,
+		"tabWidth": 1,
+		"bracketSpacing": true
+	},
+	"ava": {
+		"files": [
+			"test/**/*"
+		],
+		"extensions": [
+			"ts"
+		],
+		"require": [
+			"ts-node/register"
+		],
+		"concurrency": 5,
+		"failFast": true,
+		"failWithoutAssertions": false,
+		"verbose": true,
+		"nodeArguments": [
+			"--trace-deprecation",
+			"--napi-modules"
+		]
+	},
+	"nyc": {
+		"reporter": [
+			"text",
+			"lcov",
+			"html"
+		],
+		"branches": 80,
+		"lines": 80,
+		"functions": 80,
+		"statements": 80,
+		"check-coverage": true,
+		"all": true
+	},
+	"dependencies": {},
+	"devDependencies": {
+		"husky": "^6.0.0",
+		"prettier": "^2.3.0",
+		"typescript": "^4.2.4"
+	}
+}
