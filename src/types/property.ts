@@ -15,7 +15,7 @@ export type NotionPropertyID = string
 type NotionProp<
 	TYPE extends NotionPropertyType,
 	T extends Record<string, any>,
-> = Record<string, { id: NotionPropertyID; type: TYPE } & T>
+> = { id: NotionPropertyID; type: TYPE } & T
 
 interface NotionSelectItem {
 	id: NotionUUID
@@ -184,12 +184,9 @@ export type NotionLastEditedByProperty = NotionProp<
 // ------------------------------------------------------------
 
 export interface NotionRollup {
-	[NotionPropertyType.ROLLUP]:
-		| ({
-				type: NotionDataType.ARRAY
-		  } & NotionRollupValue)
-		| { type: NotionDataType.NUMBER; [NotionDataType.NUMBER]: NotionNumber }
-		| { type: NotionDataType.DATE; [NotionDataType.DATE]: NotionDate }
+	[NotionPropertyType.ROLLUP]: { type: NotionDataType.ARRAY } & NotionRollupValue
+	// | { type: NotionDataType.NUMBER; [NotionDataType.NUMBER]: NotionNumber }
+	// | { type: NotionDataType.DATE; [NotionDataType.DATE]: NotionDate }
 }
 
 export type NotionRollupProperty = NotionProp<
